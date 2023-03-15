@@ -6,11 +6,12 @@ const searchFood = () => {
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayMealInfo(data))
+    .then(data => displayMealInfo(data.meals))
 }
 
 const displayMealInfo = mealData => {
     const mealContainer = document.getElementById('mealCard');
+    console.log(mealData)
     mealData.forEach(item => {
         const foodItemName = document.createElement('div');
         foodItemName.className = 'meal-items';
@@ -34,15 +35,16 @@ const mealIngredientsInfo = mealItemName => {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealItemName}`;
 fetch(url)
         .then(response => response.json())
-        .then(data => displayDetails(data))
+        .then(data => displayDetails(data.meals))
 }
 
 //meal ingredients details information
 
 const displayDetails = mealItemDetails => {
     const mealItemsInformation = document.getElementById('mealItemsInfo');
+    console.log(mealItemsInformation)
     mealItemDetails.forEach(items => {
-        const mealItemsInformations = document.innerHTML('div');
+        const mealItemsInformations = document.createElement('div');
         mealItemsInformations.className = 'ingredients-info';
         console.log(items.strMeal);
         const itemsName = document.createElement('h1');
@@ -55,19 +57,20 @@ const displayDetails = mealItemDetails => {
         mealItemsInformations.appendChild(imgUrl);
         const li = `
         
-         <li>${items.strIngredient1}</li>
-         <li>${items.strIngredient2}</li>
-         <li>${items.strIngredient3}</li>
-         <li>${items.strIngredient4}</li>
-         <li>${items.strIngredient5}</li>
-         <li>${items.strIngredient6}</li>
-         <li>${items.strIngredient7}</li>
-         <li>${items.strIngredient8}</li>
-         <li>${items.strIngredient9}</li>
-         <li>${items.strIngredient10}</li>
-         <li>${items.strIngredient11}</li>
-         <li>${items.strIngredient12}</li>
-         <li>${items.strIngredient13}</li>
+    ${items.strIngredient1 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient2 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient3 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient4 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient5 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient6 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient7 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient8 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient9 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient10 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient11 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient12 ? `<li>${items.strIngredient1}</li>` : ""}
+    ${items.strIngredient13 ? `<li>${items.strIngredient1}</li>` : ""}
+        
         `
         ul.innerHTML = li;
         mealItemsInformations.appendChild(itemsName);
